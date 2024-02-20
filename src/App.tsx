@@ -19,82 +19,87 @@ import {
 import { Search, PlusCircle } from "lucide-react";
 import { DialogFooter, DialogHeader } from "./components/ui/dialog";
 import { Label } from "@radix-ui/react-label";
+import { ThemeProvider } from "./components/theme-provider";
+import { ModeToggle } from "./components/modo-toggle";
 
 export function App() {
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-4">
-      <h1 className="text-3xl font-bold">Produtos</h1>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ModeToggle />
+      <div className="p-6 max-w-4xl mx-auto space-y-4">
+        <h1 className="text-3xl font-bold">Produtos</h1>
 
-      <div className="flex items-center justify-between">
-        <form className="flex items-center gap-2">
-          <Input name="id" placeholder="ID do pedido" />
-          <Input name="name" placeholder="Nome do produto" />
-          <Button type="submit" variant="link">
-            <Search className="w-4 h-4 mr-2" />
-            Filtrar resultados
-          </Button>
-        </form>
-
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>
-              <PlusCircle className="w-4 h-4 mr-2" />
-              Novo produto
+        <div className="flex items-center justify-between">
+          <form className="flex items-center gap-2">
+            <Input name="id" placeholder="ID do pedido" />
+            <Input name="name" placeholder="Nome do produto" />
+            <Button type="submit" variant="link">
+              <Search className="w-4 h-4 mr-2" />
+              Filtrar resultados
             </Button>
-          </DialogTrigger>
+          </form>
 
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Novo produto</DialogTitle>
-              <DialogDescription>
-                Criar um novo produto no sistema
-              </DialogDescription>
-            </DialogHeader>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>
+                <PlusCircle className="w-4 h-4 mr-2" />
+                Novo produto
+              </Button>
+            </DialogTrigger>
 
-            <form className="space-y-6">
-              <div className="grid grid-cols-4 items-center text-right gap-3">
-                <Label htmlFor="name">Produto</Label>
-                <Input className="col-span-3" id="name" />
-              </div>
-              <div className="grid grid-cols-4 items-center text-right gap-3">
-                <Label htmlFor="price">Preço</Label>
-                <Input className="col-span-3" id="price" />
-              </div>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Novo produto</DialogTitle>
+                <DialogDescription>
+                  Criar um novo produto no sistema
+                </DialogDescription>
+              </DialogHeader>
 
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button type="button" variant="outline">
-                    Cancelar
-                  </Button>
-                </DialogClose>
-                <Button type="submit"> Salvar </Button>
-              </DialogFooter>
-            </form>
-          </DialogContent>
-        </Dialog>
+              <form className="space-y-6">
+                <div className="grid grid-cols-4 items-center text-right gap-3">
+                  <Label htmlFor="name">Produto</Label>
+                  <Input className="col-span-3" id="name" />
+                </div>
+                <div className="grid grid-cols-4 items-center text-right gap-3">
+                  <Label htmlFor="price">Preço</Label>
+                  <Input className="col-span-3" id="price" />
+                </div>
+
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button type="button" variant="outline">
+                      Cancelar
+                    </Button>
+                  </DialogClose>
+                  <Button type="submit"> Salvar </Button>
+                </DialogFooter>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
+
+        <div className="border rounded-lg p-2">
+          <Table>
+            <TableHeader>
+              <TableHead>ID</TableHead>
+              <TableHead>Produto</TableHead>
+              <TableHead>Preço</TableHead>
+            </TableHeader>
+            <TableBody>
+              {Array.from({ length: 10 }).map((_, i) => {
+                return (
+                  <TableRow key={i}>
+                    <TableCell>8s8a1s5d1sd15sd1</TableCell>
+                    <TableCell>Produto{i}</TableCell>
+                    <TableCell>R$ 129,90</TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </div>
       </div>
-
-      <div className="border rounded-lg p-2">
-        <Table>
-          <TableHeader>
-            <TableHead>ID</TableHead>
-            <TableHead>Produto</TableHead>
-            <TableHead>Preço</TableHead>
-          </TableHeader>
-          <TableBody>
-            {Array.from({ length: 10 }).map((_, i) => {
-              return (
-                <TableRow key={i}>
-                  <TableCell>8s8a1s5d1sd15sd1</TableCell>
-                  <TableCell>Produto{i}</TableCell>
-                  <TableCell>R$ 129,90</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </div>
-    </div>
+    </ThemeProvider>
   );
 }
 
