@@ -9,4 +9,3 @@ O **App de Cadastro de Produtos** é uma aplicação desenvolvida em **TypeScrip
 - **Vite**: Ferramenta de desenvolvimento rápida e moderna que fornece um ambiente de desenvolvimento rápido e eficiente para aplicativos web modernos.
 - **Tailwind CSS**: Framework de estilo CSS utilizado para estilizar a interface de usuário do aplicativo.
 
-Prévia: ![alt text](image.png)
